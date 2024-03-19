@@ -230,6 +230,8 @@ class Style {
   TextOverflow? textOverflow;
 
   TextTransform? textTransform;
+  
+  List<FontVariation>? fontVariations;
 
   Style({
     this.backgroundColor,
@@ -270,6 +272,7 @@ class Style {
     this.maxLines,
     this.textOverflow,
     this.textTransform = TextTransform.none,
+    this.fontVariations,
   }) {
     if (alignment == null &&
         (display == Display.block || display == Display.listItem)) {
@@ -315,6 +318,7 @@ class Style {
       shadows: textShadow,
       wordSpacing: wordSpacing,
       height: lineHeight?.size ?? 1.0,
+      fontVariations: fontVariations,
     );
   }
 
