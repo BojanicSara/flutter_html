@@ -367,6 +367,7 @@ class Style {
       maxLines: other.maxLines,
       textOverflow: other.textOverflow,
       textTransform: other.textTransform,
+      fontVariations: other.fontVariations,
     );
   }
 
@@ -410,6 +411,7 @@ class Style {
       maxLines: child.maxLines ?? maxLines,
       textOverflow: child.textOverflow ?? textOverflow,
       textTransform: child.textTransform ?? textTransform,
+      fontVariations: child.fontVariations ?? fontVariations,
     );
   }
 
@@ -454,6 +456,7 @@ class Style {
     TextOverflow? textOverflow,
     TextTransform? textTransform,
     bool? beforeAfterNull,
+    List<FontVariation>? fontVariations,
   }) {
     return Style(
       backgroundColor: backgroundColor ?? this.backgroundColor,
@@ -495,6 +498,7 @@ class Style {
       maxLines: maxLines ?? this.maxLines,
       textOverflow: textOverflow ?? this.textOverflow,
       textTransform: textTransform ?? this.textTransform,
+      fontVariations: fontVariations ?? this.fontVariations,
     );
   }
 
@@ -517,6 +521,7 @@ class Style {
       textShadow: textStyle.shadows,
       wordSpacing: textStyle.wordSpacing,
       lineHeight: LineHeight(textStyle.height ?? 1.2),
+      fontVariations: textStyle.fontVariations,
     );
   }
 
