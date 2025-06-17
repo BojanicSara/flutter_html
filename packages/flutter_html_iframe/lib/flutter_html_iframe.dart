@@ -1,12 +1,10 @@
-library flutter_html_iframe;
+library;
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'iframe_unsupported.dart'
-    if (dart.library.io) 'iframe_mobile.dart'
-    if (dart.library.html) 'iframe_web.dart';
+import 'iframe_unsupported.dart' if (dart.library.io) 'iframe_mobile.dart' if (dart.library.js_interop) 'iframe_web.dart';
 
 class IframeHtmlExtension extends HtmlExtension {
   final NavigationDelegate? navigationDelegate;
