@@ -14,7 +14,7 @@ dependencies:
   flutter_html:
     git:
       url: 'https://github.com/BojanicSara/flutter_html.git'
-      ref: 'variable-fonts-support'
+      ref: 'update-dependencies-2026-10'
   webview_flutter: '>=4.0.0 <5.0.0'
 
 dev_dependencies:
