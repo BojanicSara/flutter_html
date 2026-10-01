@@ -3,8 +3,9 @@ import 'dart:collection';
 import 'package:flutter_html/src/style.dart';
 import 'package:html/dom.dart' as dom;
 //TODO(Sub6Resources): don't use the internal code of the html package as it may change unexpectedly.
+import 'package:csslib/parser.dart' as css;
 //ignore: implementation_imports
-import 'package:html/src/query_selector.dart';
+import 'package:html/src/query_selector.dart' show SelectorEvaluator;
 import 'package:list_counter/list_counter.dart';
 
 /// A [StyledElement] applies a style to all of its children.
@@ -27,7 +28,14 @@ class StyledElement {
   });
 
   bool matchesSelector(String selector) {
-    return (element != null && matches(element!, selector)) || name == selector;
+    final element = this.element;
+    if (element != null) {
+      final group = css.parseSelectorGroup(selector);
+      if (group != null && SelectorEvaluator().matches(element, group)) {
+        return true;
+      }
+    }
+    return name == selector;
   }
 
   Map<String, String> get attributes => node.attributes.map((key, value) {
@@ -46,8 +54,7 @@ class StyledElement {
     String selfData =
         "[$name] ${children.length} ${elementClasses.isNotEmpty == true ? 'C:${elementClasses.toString()}' : ''}${elementId.isNotEmpty == true ? 'ID: $elementId' : ''}";
     for (var child in children) {
-      selfData += ("\n${child.toString()}")
-          .replaceAll(RegExp("^", multiLine: true), "-");
+      selfData += ("\n${child.toString()}").replaceAll(RegExp("^", multiLine: true), "-");
     }
     return selfData;
   }
